@@ -1,5 +1,5 @@
-<!–– Robert Jahn. Answer to a missed interview question. Recursion necessary due to the fact that object could have children, which could have children,
-	which could have children, etc. Will remove any 'delete' attribute that has a value of true.
+<!–– Robert Jahn. Answer to a missed interview question. Recursion necessary due to the fact that object could have children, 
+	which could have children, which could have children, etc. Will remove any 'delete' attribute that has a value of true.
 ––>
 
 <html>
@@ -70,12 +70,12 @@ document.getElementById("message").innerHTML = object1.toSource();
 function clean(object) {
 	for(attr in object) {
 		if (attr == 'delete') {				// If the attribute is named delete...
-			if (object.delete == true) {	//... jump in and check if it is true... 
+			if (object.delete == true) {		//... jump in and check if it is true... 
 				delete object.delete		//... and delete if so.
 			}
 		}
-		else if (typeof object[attr] == 'object') {		// Otherwise, recursivley search down into the attribute...
-			clean(object[attr]);						//... only if it is an object itself.
+		else if (typeof object[attr] == 'object') {	// Otherwise, recursivley search down into the attribute...
+			clean(object[attr]);			//... only if it is an object itself.
 		}
 	}
 }
