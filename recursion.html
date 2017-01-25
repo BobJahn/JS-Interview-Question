@@ -1,0 +1,94 @@
+<!–– Robert Jahn. Answer to a missed interview question. Recursion necessary due to the fact that object could have children, which could have children,
+	which could have children, etc. Will remove any 'delete' attribute that has a value of true.
+––>
+
+<html>
+<style>
+
+</style>
+
+<head>
+<title>Recursion JS Object</title>
+
+</head>
+
+<body>
+	
+<h1>Small display of a javascript function which recursively looks through an object and deletes anything which has a delete field of true.
+	<button id="start" onclick="start()">Test!</button> <BR>
+</h1>
+
+<h2 id="message">
+	
+</h2>
+
+
+<script>
+
+var outputStr = "";
+
+object1 = {
+	"dog": {
+		"name": "Chester",
+		"age": "10",
+		"delete": true
+	},
+	"cat": {
+		"name": "Sally",
+		"age": "4",
+		"delete": false
+	},
+	"delete": true,
+	"bird": {
+		"name": "Chester",
+		"age": "10",
+		"wings": {
+			"span": "5",
+			"delete": false,
+			"color": "red"
+		}
+	},
+	"dino": {
+		"name": "Rex",
+		"size": {
+			"teeth": 1000,
+			"delete": true,
+			"tail": {
+				"delete": true
+			}
+		}
+	}
+};
+
+
+document.getElementById("message").innerHTML = object1.toSource();
+
+
+
+
+
+function clean(object) {
+	for(attr in object) {
+		if (attr == 'delete') {				// If the attribute is named delete...
+			if (object.delete == true) {	//... jump in and check if it is true... 
+				delete object.delete		//... and delete if so.
+			}
+		}
+		else if (typeof object[attr] == 'object') {		// Otherwise, recursivley search down into the attribute...
+			clean(object[attr]);						//... only if it is an object itself.
+		}
+	}
+}
+
+function start() {
+	clean(object1);
+	document.getElementById("message").innerHTML = object1.toSource();
+}
+
+
+</script>
+
+
+</body>
+
+</html>
