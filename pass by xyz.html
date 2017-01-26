@@ -1,0 +1,67 @@
+<!–– Robert Jahn. Answer to interview question. Javascript utilizes pass by reference much like java. The object must change within the function.
+	Simply changing the reference itself inside the function will have no affect on the original reference.
+––>
+
+<html>
+<style>
+
+</style>
+
+<head>
+<title>JS Parameter Passing</title>
+
+</head>
+
+<body>
+	
+<h1>Small display of a javascript function which show how passed parameters change (or don't change). <br>
+	<button id="start" onclick="start()">Test!</button> <BR>
+</h1>
+
+<h2 id="message1">
+	
+</h2>
+
+<h2 id="message2">
+	
+</h2>
+
+
+<script>
+
+a = 3;
+b = {"name": "bob", "age": 30};
+c = ["hello", "goodbye"]
+d = ["whoa", "woah"]
+document.getElementById("message1").innerHTML = "Before call:<br>" + a + "<br>" + b.toSource() + "<br>" + c + "<br>" + d;
+
+
+
+
+//Test the pass-by-reference behavior of Javascript. 'a' will not change as pass by value is used.
+//'d' will not change as we are re-assigning the reference, but this is local to the function.
+//Since the original array pointed at by 'd' does not change, we will see no change here.
+function start() {
+	test(a,b,c,d);
+	document.getElementById("message2").innerHTML = "After call:<br>" + a + "<br>" + b.toSource() + "<br>" + c + "<br>" + d;
+}
+
+function test(x1,x2,x3,x4) {
+	x1 = 4;
+	x2.gender = "male";
+	x3.push("Magical Mystery Tour");
+	x4 = ["1","2"]
+}
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
